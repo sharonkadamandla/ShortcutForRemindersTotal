@@ -1,0 +1,105 @@
+Step-by-Step Setup Guide - 2026
+
+Follow these steps to build and configure the shortcut on macOS or iOS. Refer to images for clarity.
+
+
+Prerequisites
+
+Open Apple Reminders and create a target list (e.g., Shop).
+
+Inside your list, create a dedicated reminder item named Total (or create a section/subcategory header titled Total).
+
+Step 1: Build the Shortcut Workflow
+
+Open the Shortcuts app and create a new shortcut named Shopping Total.
+
+
+Add the following actions in exact order:
+
+1. Fetch Shopping Items
+
+Add Action: Find Reminders
+
+Filter Rules:
+
+List is Shop
+
+Is Not Completed
+
+Title does not contain Total
+
+Set Sort by to None and leave Limit unchecked.
+
+2. Extract Prices
+
+Add Action: Match Text
+
+Pattern: \d+(\.\d{2})?
+
+Input: Reminders (Output from Step 1)
+
+3. Calculate the Sum
+
+Add Action: Calculate Statistics
+
+Operation: Sum
+
+Input: Matches (Output from Step 2)
+
+4. Find the Target "Total" Item
+
+Add Action: Find Reminders
+
+Filter Rules:
+
+List is Shop
+
+Title contains Total
+
+Set Sort by to None and check Limit to 1.
+
+5. Update the Header Title
+
+Add Action: Set Title
+
+Target: Reminders (Output from Step 4)
+
+Text to set: Total : $ + Sum (Output from Step 3)
+
+Step 2: Configure Automatic Triggers
+
+To ensure the shortcut runs hands-free without opening the Shortcuts app every time:
+
+
+Option A: Run Automatically on App Close (Recommended)
+
+Open Shortcuts $\rightarrow$ Navigate to the Automation tab.
+
+Tap + and select App.
+
+Set App to Reminders and check Is Closed.
+
+Select Run Immediately (disable Ask Before Running).
+
+Set the action to Run Shortcut and choose Shopping Total.
+
+
+Option B: Hardware Back Tap Trigger
+
+Go to System Settings / Settings $\rightarrow$ Accessibility $\rightarrow$ Touch $\rightarrow$ Back Tap.
+
+Assign Double Tap or Triple Tap to the Shopping Total shortcut.
+
+Double-tap the back of your device while viewing your list to update the sum on screen instantly.
+
+Usage Syntax Guidelines
+
+Format items in your Reminders list with prices attached at the end or within the title text:
+
+Granola bars — $3.97
+
+Tomato — $1
+
+Ghee — $11
+
+The Regular Expression automatically extracts all valid numeric formats ($3.97, $1, $11) and aggregates the result under your list's Total heading.
