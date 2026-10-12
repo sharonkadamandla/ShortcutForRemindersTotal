@@ -15,3 +15,4 @@ In-List Real-time Update: Automatically updates a target header or subtask line 
 
 Background Trigger: Runs seamlessly in the background when closing the Reminders app or triggered via Back Tap or widgets.
 
+<img width="1258" height="977" alt="Shortcut Image" src="https://github.com/user-attachments/assets/78a4aabf-4c7d-4206-a01f-ebc8325b2985" />
